@@ -53,7 +53,7 @@ const MyInfo = ({ setCurrentStep, form, setForm }) => {
     }
 
     return (
-        <div className='p-4 sm:p-10 h-full flex flex-col justify-between h-full flex flex-col justify-between'>
+        <div className='p-4 sm:p-10 h-full flex-col justify-between'>
             <div>
                 <h1 className='text-4xl font-bold pb-3'>Personal Info</h1>
                 <p className='text-gray-400 pb-8'>Please provide your name, email address, and phone number.</p>
