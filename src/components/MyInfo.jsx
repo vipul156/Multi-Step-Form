@@ -9,7 +9,7 @@ const MyInfo = ({ setCurrentStep, form, setForm }) => {
             ...form,
             [name]: value
         })
-        
+
         // Clear error for this field when user starts typing
         if (errors[name]) {
             setErrors({
@@ -53,35 +53,37 @@ const MyInfo = ({ setCurrentStep, form, setForm }) => {
     }
 
     return (
-        <div className='p-10'>
-            <h1 className='text-4xl font-bold pb-3'>Personal Info</h1>
-            <p className='text-gray-400 pb-8'>Please provide your name, email address, and phone number.</p>
-            <div className='flex flex-col gap-5'>
-                {
-                    credentials.map((cred, i) => {
-                        return (
-                            <div key={i} className='flex flex-col'>
-                                <div className='flex justify-between items-center'>
-                                    <label htmlFor={cred.name}>{cred.label}</label>
-                                    {errors[cred.name] && (
-                                        <span className='text-red-500 text-sm font-medium'>{errors[cred.name]}</span>
-                                    )}
+        <div className='p-4 sm:p-10 h-full flex flex-col justify-between h-full flex flex-col justify-between'>
+            <div>
+                <h1 className='text-4xl font-bold pb-3'>Personal Info</h1>
+                <p className='text-gray-400 pb-8'>Please provide your name, email address, and phone number.</p>
+                <div className='flex flex-col gap-5'>
+                    {
+                        credentials.map((cred, i) => {
+                            return (
+                                <div key={i} className='flex flex-col'>
+                                    <div className='flex justify-between items-center'>
+                                        <label htmlFor={cred.name}>{cred.label}</label>
+                                        {errors[cred.name] && (
+                                            <span className='text-red-500 text-sm font-medium'>{errors[cred.name]}</span>
+                                        )}
+                                    </div>
+                                    <input
+                                        id={cred.name}
+                                        value={form[cred.name] || ""}
+                                        name={cred.name}
+                                        onChange={handleChange}
+                                        className={`rounded-lg p-2.5 px-3.5 mt-1 border focus:outline-1 ${errors[cred.name] ? 'border-red-500 focus:outline-red-500' : 'border-gray-400 focus:outline-[#413DFF]'}`}
+                                        type={cred.type}
+                                        placeholder={cred.placeholder}
+                                    />
                                 </div>
-                                <input 
-                                    id={cred.name}
-                                    value={form[cred.name] || ""} 
-                                    name={cred.name} 
-                                    onChange={handleChange} 
-                                    className={`rounded-lg p-2.5 px-3.5 mt-1 border focus:outline-1 ${errors[cred.name] ? 'border-red-500 focus:outline-red-500' : 'border-gray-400 focus:outline-[#413DFF]'}`}
-                                    type={cred.type} 
-                                    placeholder={cred.placeholder} 
-                                />
-                            </div>
-                        )
-                    })
-                }
+                            )
+                        })
+                    }
+                </div>
             </div>
-            <div className='flex absolute bottom-10 right-29 font-semibold'>
+            <div className='flex bg-white justify-end p-4 fixed bottom-0 right-0 w-full sm:static font-semibold'>
                 <button
                     onClick={handleNext}
                     className='bg-[#164A8B] hover:bg-[#164A8B]/90 cursor-pointer text-white p-3 px-7 rounded-lg'
